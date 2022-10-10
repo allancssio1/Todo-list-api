@@ -6,5 +6,6 @@ const userController = new UserController();
 const routes = Router();
 
 routes.post('/newUser', userController.create);
+routes.post('/editUser/:id', userController.edit);
 
 export { routes };
