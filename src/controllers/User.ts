@@ -23,7 +23,7 @@ class UserController {
     });
   }
 
-  async edit(req: Request, res: Response) {
+  async update(req: Request, res: Response) {
     const { name, username, password, email } = req.body;
     const { id } = req.params;
 
@@ -36,13 +36,7 @@ class UserController {
         message: 'User not found!',
       });
 
-    const responseDB = await UserModule.edit(
-      name,
-      username,
-      password,
-      email,
-      id,
-    );
+    await UserModule.update(name, username, password, email, id);
 
     return res.status(200).json({
       success: true,

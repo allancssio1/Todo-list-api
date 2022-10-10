@@ -31,7 +31,7 @@ export const UserModule = {
       },
     });
   },
-  edit: async (
+  update: async (
     name: string,
     username: string,
     password: string,

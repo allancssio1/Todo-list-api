@@ -5,8 +5,8 @@ const userController = new UserController();
 
 const routes = Router();
 
-routes.post('/newUser', userController.create);
-routes.post('/editUser/:id', userController.edit);
+routes.post('/create', userController.create);
+routes.post('/editUser/:id', userController.update);
 routes.delete('/delete/:id', userController.delete);
 
 export { routes };
