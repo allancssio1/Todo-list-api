@@ -5,8 +5,8 @@ class UserController {
   async create(req: Request, res: Response) {
     const { name, username, password, email } = req.body;
 
-    const userId = await UserModule.create(name, username, password, email);
-    return res.status(200).json({ userId });
+    const user = await UserModule.create(name, username, password, email);
+    return res.status(200).json({ userId: user.id });
   }
 }
 
