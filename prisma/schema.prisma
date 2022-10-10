@@ -14,6 +14,21 @@ model Users {
   password  String
   email     String
   createdAt DateTime @default(now())
+  Todos     Todos[]
 
   @@map("users")
+}
+
+model Todos {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  priority    String   @default("low")
+  state       String   @default("not init")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  user        Users    @relation(fields: [usersId], references: [id])
+  usersId     String
+
+  @@map("todos")
 }
