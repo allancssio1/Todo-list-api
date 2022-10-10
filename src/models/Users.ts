@@ -48,4 +48,9 @@ export const UserModule = {
       where: { id: userId },
     });
   },
+  delete: async (id: string) => {
+    return await prisma.users.delete({
+      where: { id },
+    });
+  },
 };

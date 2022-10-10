@@ -50,6 +50,27 @@ class UserController {
       message: 'User edited success!',
     });
   }
+
+  async delete(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const user = await UserModule.findUserById(id);
+
+    if (!user)
+      return res.status(404).json({
+        success: false,
+        message: 'User not Found!',
+        data: {},
+      });
+
+    await UserModule.delete(id);
+
+    return res.status(200).json({
+      success: true,
+      message: 'User deleted success!',
+      data: {},
+    });
+  }
 }
 
 export { UserController };
