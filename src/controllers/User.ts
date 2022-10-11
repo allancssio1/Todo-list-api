@@ -65,6 +65,15 @@ class UserController {
       data: {},
     });
   }
+
+  async list(req: Request, res: Response) {
+    const users = await UserModule.getAllUsers();
+    return res.status(200).json({
+      success: true,
+      data: { users },
+      message: 'User created success!',
+    });
+  }
 }
 
 export { UserController };

@@ -53,4 +53,7 @@ export const UserModule = {
       where: { id },
     });
   },
+  getAllUsers: async () => {
+    return await prisma.users.findMany();
+  },
 };
