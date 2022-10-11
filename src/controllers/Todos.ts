@@ -61,4 +61,36 @@ export class TodosController {
       data: { id: todo.id },
     });
   }
+
+  async edit(req: Request, res: Response) {
+    const { title, description } = req.body;
+    let { priority, state } = req.body;
+    const { todoId } = req.params;
+
+    const todo = await TodosModels.findTodoById(todoId);
+
+    if (!todo)
+      return res.status(400).json({
+        success: false,
+        message: 'User not found!',
+        data: {},
+      });
+
+    if (priority !== 'medium' && priority !== 'high') priority = 'low';
+    if (state !== 'inited' && state !== 'conclued') state = 'not init';
+
+    const todoUpdated = await TodosModels.update(
+      title,
+      description,
+      priority,
+      state,
+      todoId,
+    );
+
+    return res.status(400).json({
+      success: true,
+      message: 'Todo edited success!',
+      data: { id: todoUpdated.id },
+    });
+  }
 }

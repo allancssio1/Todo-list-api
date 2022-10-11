@@ -25,4 +25,30 @@ export const TodosModels = {
       },
     });
   },
+  update: async (
+    title: string,
+    description: string,
+    priority: string,
+    state: string,
+    id: string,
+  ) => {
+    return await prisma.todos.update({
+      data: {
+        title,
+        description,
+        priority,
+        state,
+      },
+      where: {
+        id,
+      },
+    });
+  },
+  findTodoById: async (id: string) => {
+    return await prisma.todos.findFirst({
+      where: {
+        id,
+      },
+    });
+  },
 };
