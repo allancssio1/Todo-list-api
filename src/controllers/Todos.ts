@@ -93,4 +93,25 @@ export class TodosController {
       data: { id: todoUpdated.id },
     });
   }
+
+  async delete(req: Request, res: Response) {
+    const { todoId: id } = req.params;
+
+    const todo = await TodosModels.findTodoById(id);
+
+    if (!todo)
+      return res.status(400).json({
+        success: false,
+        message: 'Todo not found',
+        data: {},
+      });
+
+    await TodosModels.deleteTodo(id);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Todo deleted success!',
+      data: {},
+    });
+  }
 }

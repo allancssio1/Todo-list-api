@@ -51,4 +51,9 @@ export const TodosModels = {
       },
     });
   },
+  deleteTodo: async (id: string) => {
+    return await prisma.todos.delete({
+      where: { id },
+    });
+  },
 };
