@@ -29,4 +29,36 @@ export class TodosController {
       data: { todos },
     });
   }
+
+  async create(req: Request, res: Response) {
+    const { title, description } = req.body;
+    let { priority, state } = req.body;
+    const { id } = req.params;
+
+    const user = await UserModule.findUserById(id);
+
+    if (priority !== 'medium' && priority !== 'high') priority = 'low';
+    if (state !== 'inited' && state !== 'conclued') state = 'not init';
+
+    if (!user)
+      return res.status(400).json({
+        success: false,
+        message: 'User not found!',
+        data: {},
+      });
+
+    const todo = await TodosModels.newTodo(
+      title,
+      description,
+      priority,
+      state,
+      id,
+    );
+
+    return res.status(400).json({
+      success: true,
+      message: 'Todo create success!',
+      data: { id: todo.id },
+    });
+  }
 }

@@ -7,10 +7,11 @@ const todosController = new TodosController();
 
 const routes = Router();
 
-routes.post('/create', userController.create);
-routes.post('/editUser/:id', userController.update);
-routes.delete('/delete/:id', userController.delete);
+routes.post('/user/create', userController.create);
+routes.post('/user/editUser/:id', userController.update);
+routes.delete('/user/delete/:id', userController.delete);
 
-routes.get('/todos/:id', todosController.list);
+routes.get('/todos/list/:id', todosController.list);
+routes.post('/todos/create/:id', todosController.create);
 
 export { routes };
